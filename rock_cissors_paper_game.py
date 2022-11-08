@@ -1,79 +1,83 @@
 import random
 
-choices = ["Rock", "Paper", "Cissors"]
-
 computers_points = 0
 user_poits = 0
 
-print("Best of 5 Games")
-
+print('This is the game "Rock, Scissors, Paper". Enjoy!')
+user_name = input("What is your name? ")
+print(f"OK, {user_name}. The game is up to 3 wins.")
 while True:
     print()
-    user_guess = input("Choose [r] for Rock, [p] for paper, [s] for cissors: ").lower()
-    computer_guess = random.choice(choices)
+    user_choice = input("Choose [r] for Rock, [s] for Scissors, [p] for Paper: ").lower()
+    if user_choice == "r":
+        user_choice = "Rock"
+    elif user_choice == "s":
+        user_choice = "Scissors"
+    elif user_choice == "p":
+        user_choice = "Paper"
 
-    if user_guess == "r":
-        if computer_guess == "Rock":
-            print("User Guess: Rock")
-            print("Computer Guess: Rock")
-            print("It's a Draw")
-            print(f"Result is {user_poits}:{computers_points}")
-        elif computer_guess == "Paper":
-            print("User Guess: Rock")
-            print("Computer Guess: Paper")
-            print("Computer beat this turn")
+    computer_choice = random.choice(["Rock", "Paper", "Scissors"])
+
+    print(f"{user_name} -> {user_choice} : {computer_choice} <- Computer")
+    print()
+
+    if user_choice == "Rock":
+        if computer_choice == "Rock":
+            print("Draw!")
+        elif computer_choice == "Paper":
+            print("Computer won a point")
             computers_points +=1
-            print(f"Result is {user_poits}:{computers_points}")
-        elif computer_guess == "Cissors":
-            print("User Guess: Rock")
-            print("Computer Guess: Cissors")
-            print("User beat this turn")
-            user_poits +=1
-            print(f"Result is {user_poits}:{computers_points}")
-    elif user_guess == "p":
-        if computer_guess == "Rock":
-            print("User Guess: Paper")
-            print("Computer Guess: Rock")
-            print("User beat this turn")
+        elif computer_choice == "Scissors":
+            print(f"{user_name} won a point")
             user_poits += 1
-            print(f"Result is {user_poits}:{computers_points}")
-        elif computer_guess == "Paper":
-            print("User Guess: Paper")
-            print("Computer Guess: Paper")
+    elif user_choice == "Paper":
+        if computer_choice == "Rock":
+            print(f"{user_name} won a point")
+            user_poits += 1
+        elif computer_choice == "Paper":
             print("It's Draw")
-            print(f"Result is {user_poits}:{computers_points}")
-        elif computer_guess == "Cissors":
-            print("User Guess: Paper")
-            print("Computer Guess: Cissors")
-            print("Computer beat this turn")
+        elif computer_choice == "Scissors":
+            print("Computer won a point")
             computers_points += 1
-            print(f"Result is {user_poits}:{computers_points}")
-    elif user_guess == "s":
-        if computer_guess == "Rock":
-            print("User Guess: Cissors")
-            print("Computer Guess: Rock")
-            print("Computer beat this turn")
+    elif user_choice == "Scissors":
+        if computer_choice == "Rock":
+            print("Computer won a point")
             computers_points += 1
-            print(f"Result is {user_poits}:{computers_points}")
-        elif computer_guess == "Paper":
-            print("User Guess: Cissors")
-            print("Computer Guess: Paper")
-            print("User beat this turn")
+        elif computer_choice == "Paper":
+            print(f"{user_name} won a point")
             user_poits += 1
-            print(f"Result is {user_poits}:{computers_points}")
-        elif computer_guess == "Cissors":
-            print("User Guess: Cissors")
-            print("Computer Guess: Cissors")
+        elif computer_choice == "Scissors":
             print("It's a Draw")
-            print(f"Result is {user_poits}:{computers_points}")
     else:
         print("Invalid Guess! Try again!")
         print(f"The result is still {user_poits}:{computers_points}")
         continue
 
+    print(f"({user_name}) {user_poits}:{computers_points} (Computer)")
+
     if computers_points == 3:
         print("Computer Win")
-        break
+        print()
+        command = input("Do you wonna another game? [yes] or [no]")
+        if command == "yes":
+            user_poits = 0
+            computers_points = 0
+        elif command == "no":
+            break
+        else:
+            print('I will accept this for "no" ')
+            break
     elif user_poits == 3:
         print("User Win")
-        break
+        print()
+        command = input("Do you wonna another game? [yes] or [no] -> ")
+        if command == "yes":
+            user_poits = 0
+            computers_points = 0
+        elif command == "no":
+            break
+        else:
+            print('I will accept this for "no" ')
+            break
+
+
