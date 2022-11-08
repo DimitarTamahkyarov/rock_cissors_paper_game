@@ -64,6 +64,7 @@ while True:
             break
         else:
             print('I will accept this for "no" ')
+            print("OK, See you next time :)")
             break
     elif user_poits == 3:
         print(f"{user_name} Win The Game")
@@ -73,9 +74,11 @@ while True:
             user_poits = 0
             computers_points = 0
         elif command == "no":
+            print("OK, See you next time :)")
             break
         else:
             print('I will accept this for "no" ')
+            print("OK, See you next time :)")
             break
 
 
